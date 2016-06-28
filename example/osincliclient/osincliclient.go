@@ -6,10 +6,11 @@ package main
 
 import (
 	"fmt"
-	"github.com/RangelReale/osin"
-	"github.com/RangelReale/osin/example"
-	"github.com/RangelReale/osincli"
 	"net/http"
+
+	"github.com/robjsliwa/osin"
+	"github.com/robjsliwa/osin/example"
+	"github.com/robjsliwa/osincli"
 )
 
 func main() {

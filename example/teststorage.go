@@ -3,7 +3,8 @@ package example
 import (
 	"errors"
 	"fmt"
-	"github.com/RangelReale/osin"
+
+	"github.com/robjsliwa/osin"
 )
 
 type TestStorage struct {

@@ -5,11 +5,12 @@ package main
 
 import (
 	"fmt"
-	"github.com/RangelReale/osin"
-	"github.com/RangelReale/osin/example"
-	"github.com/dgrijalva/jwt-go"
 	"net/http"
 	"net/url"
+
+	"github.com/dgrijalva/jwt-go"
+	"github.com/robjsliwa/osin"
+	"github.com/robjsliwa/osin/example"
 )
 
 // JWT access token generator
