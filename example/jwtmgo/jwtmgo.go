@@ -74,10 +74,10 @@ func main() {
 	cfg.AllowClientSecretInParams = true
 	storage := mgostore.New(session, dbName)
 
-	if _, err := storage.GetClient("1234"); err != nil {
-		if err := storage.SetClient("1234", &osin.DefaultClient{
-			Id:          "1234",
-			Secret:      "aabbccdd",
+	if _, err := storage.GetClient("KFNTO7iq4CDNbwZSvN9IFI5c3YfiNufg"); err != nil {
+		if err := storage.SetClient("KFNTO7iq4CDNbwZSvN9IFI5c3YfiNufg", &osin.DefaultClient{
+			Id:          "KFNTO7iq4CDNbwZSvN9IFI5c3YfiNufg",
+			Secret:      "tRFHG0KXJc8kolf19siDJpCmQ7tixBBOSXJpcyBEYXNoYm9hcmQ5ZGY5MWIxZDU5MGE0ZDk5ODhkZjZlZTE0ZDI5MjVlMA",
 			RedirectUri: "http://localhost:14000/appauth",
 		}); err != nil {
 			panic(err)
@@ -134,7 +134,7 @@ func main() {
 	// Application home endpoint
 	http.HandleFunc("/app", func(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("<html><body>"))
-		w.Write([]byte(fmt.Sprintf("<a href=\"/authorize?response_type=code&client_id=1234&state=xyz&scope=everything&redirect_uri=%s\">Login</a><br/>", url.QueryEscape("http://localhost:14000/appauth/code"))))
+		w.Write([]byte(fmt.Sprintf("<a href=\"/authorize?response_type=code&client_id=KFNTO7iq4CDNbwZSvN9IFI5c3YfiNufg&state=xyz&scope=everything&redirect_uri=%s\">Login</a><br/>", url.QueryEscape("http://localhost:14000/appauth/code"))))
 		w.Write([]byte("</body></html>"))
 	})
 
@@ -156,13 +156,13 @@ func main() {
 		jr := make(map[string]interface{})
 
 		// build access code url
-		aurl := fmt.Sprintf("/token?grant_type=authorization_code&client_id=1234&client_secret=aabbccdd&state=xyz&redirect_uri=%s&code=%s",
+		aurl := fmt.Sprintf("/token?grant_type=authorization_code&client_id=KFNTO7iq4CDNbwZSvN9IFI5c3YfiNufg&client_secret=tRFHG0KXJc8kolf19siDJpCmQ7tixBBOSXJpcyBEYXNoYm9hcmQ5ZGY5MWIxZDU5MGE0ZDk5ODhkZjZlZTE0ZDI5MjVlMA&state=xyz&redirect_uri=%s&code=%s",
 			url.QueryEscape("http://localhost:14000/appauth/code"), url.QueryEscape(code))
 
 		// if parse, download and parse json
 		if r.Form.Get("doparse") == "1" {
 			err := example.DownloadAccessToken(fmt.Sprintf("http://localhost:14000%s", aurl),
-				&osin.BasicAuth{"1234", "aabbccdd"}, jr)
+				&osin.BasicAuth{"KFNTO7iq4CDNbwZSvN9IFI5c3YfiNufg", "tRFHG0KXJc8kolf19siDJpCmQ7tixBBOSXJpcyBEYXNoYm9hcmQ5ZGY5MWIxZDU5MGE0ZDk5ODhkZjZlZTE0ZDI5MjVlMA"}, jr)
 			if err != nil {
 				w.Write([]byte(err.Error()))
 				w.Write([]byte("<br/>"))
